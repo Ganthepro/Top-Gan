@@ -50,8 +50,7 @@ def import_pic():
     #image = ImageTk.PhotoImage(file=filename, width=size[0],wall_height=size[1])
     image_lable = tk.Label(master=window, image=image)
     image_lable.place(x=150, y=80)
-
-
+    
 def sgv_convert():
     threshold_entry.place_forget()
     threshold_lable.place_forget()
