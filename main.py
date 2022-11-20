@@ -656,10 +656,6 @@ def pdf_convert():
     window.update()
     for y in range(n_hy):
         for x in range(n_wx):
-            if y - 1 < 0:  # บน
-                b = px_im[x, y]
-            else:
-                b = px_im[x, y - 1]
             if x - 1 < 0:  # ซ้าย
                 e = px_im[x, y]
             else:
