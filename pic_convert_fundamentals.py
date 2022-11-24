@@ -9,6 +9,9 @@ pic = [1, 0, 0, 0, 1,
        0, 0, 1, 0, 0,
        0, 0, 0, 0, 0,
        1, 0, 0, 0, 1]
+       
+# pic = [0, 1,
+#        0, 1,]
 
 mx, my = 5, 5
 vec = []
@@ -34,12 +37,12 @@ for y in range(my):
 sx, sy, ex, ey = 1, 2, 3, 4
 
 window = Tk()
-window.title("Pattern Matching")
-im = Image.new('RGBA', (400, 400), (0, 0, 0, 255))
+window.title("Fundamentals")
+xshift = 0
+yshift = 0
+scale = 100
+im = Image.new('RGBA', (mx*scale, my*scale), (0, 0, 0, 255))
 draw = ImageDraw.Draw(im)
-xshift = 10
-yshift = 10
-scale = 50
 for i in vec:
     print(i)
     draw.line(

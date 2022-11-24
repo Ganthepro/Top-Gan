@@ -82,8 +82,10 @@ def sgv_convert():
     yshift = -1
     #scale = int(scale_entry.get())
     scale = math.ceil(float(scale_entry.get()))
-    if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
+    if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
         stop_button.place(x=400, y=20)
+    else:
+        return
     im = Image.new('RGBA', (wx * scale, hy * scale),
                    (bg_color[0], bg_color[1], bg_color[2], 255))
     sx, sy, ex, ey = 1, 2, 3, 4
@@ -469,8 +471,10 @@ def pdf_convert():
     pic_yshift = -1
     #scale = int(scale_entry.get())
     scale = math.ceil(float(scale_entry.get()))
-    if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
+    if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
         stop_button.place(x=400, y=20)
+    else:
+        return
     vec = []
     RGB = []
     bg_color = [0, 0, 1]
@@ -1112,8 +1116,10 @@ def Upscale_line():
     yshift = -1
     #scale = int(scale_entry.get())
     scale = math.ceil(float(scale_entry.get()))
-    if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
+    if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
         stop_button.place(x=400, y=20)
+    else:
+        return
     im = Image.new('RGBA', (wx * scale, hy * scale),
                    (bg_color[0], bg_color[1], bg_color[2], 255))
     sx, sy, ex, ey = 1, 2, 3, 4
@@ -1313,8 +1319,10 @@ def Upscale_color():
     yshift = -1
     #scale = int(scale_entry.get())
     scale = math.ceil(float(scale_entry.get()))
-    if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
+    if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
         stop_button.place(x=400, y=20)
+    else:
+        return
     im = Image.new('RGBA', (wx * scale, hy * scale),
                    (bg_color[0], bg_color[1], bg_color[2], 255))
     sx, sy, ex, ey = 1, 2, 3, 4
@@ -1631,8 +1639,10 @@ def stl_convert_2():
     vec = []
     idx = -1
     stl_scale = float(scale_entry.get())
-    if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
+    if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
         stop_button.place(x=400, y=20)
+    else:
+        return
     im = Image.new('RGBA', (wx*scale, hy*scale),
                    (bg_color[0], bg_color[1], bg_color[2], 255))
     if int(shape_line_cheak_box_var.get()) == 1:
@@ -1985,8 +1995,10 @@ def real_pic_stl2():
     try:
         size_input = 5
         img = Image.open(filename_history[0])
-        if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
+        if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
             stop_button.place(x=400, y=20)
+        else:
+            return
         img = img.convert('RGBA')
         cv_img = np.array(img)
         img = cv2.cvtColor(cv_img, cv2.COLOR_RGB2BGR)
@@ -2002,8 +2014,6 @@ def real_pic_stl2():
         pil = Image.fromarray(color)
         bg_color = [0, 0, 1]
         img = pil
-        if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
-            stop_button.place(x=400, y=20)
         wx, hy = img.size
         px = img.load()
         scale = 1
@@ -2411,8 +2421,6 @@ def gcode_convert2():
         color[np.where((color == [255, 255, 255]).all(axis=2))] = [0, 0, 0]
         pil = Image.fromarray(color)
         img = pil
-        if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
-            stop_button.place(x=400, y=20)
         wx, hy = img.size
         print(img.size)
         px = img.load()
@@ -2423,8 +2431,10 @@ def gcode_convert2():
         vec = []
         idx = -1
         scale = float(scale_entry.get())  # scale
-        if str(scale_entry.get()) != '' or str(save_filename_entry.get()) != '':
+        if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
             stop_button.place(x=400, y=20)
+        else:
+            return
         if int(shape_line_cheak_box_var.get()) == 1:
             for y in range(hy):
                 for x in range(wx):
@@ -2899,6 +2909,10 @@ def gcode_convert1():
     r, g, b = 2, 1, 0
     vec = []
     idx = -1
+    if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
+        stop_button.place(x=400, y=20)
+    else:
+        return
     if int(shape_line_cheak_box_var.get()) == 1:
         for y in range(hy):
             for x in range(wx):
