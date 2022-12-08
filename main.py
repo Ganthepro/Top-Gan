@@ -1111,7 +1111,6 @@ def Upscale_line():
     cv_img = np.array(img)
     img_cv2 = cv2.cvtColor(cv_img, cv2.COLOR_RGB2BGR)
     # window = Tk()
-    # window.title("Pattern Matching")
     xshift = 0
     yshift = -1
     #scale = int(scale_entry.get())
