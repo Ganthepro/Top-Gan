@@ -69,6 +69,7 @@ for y in range(hy):
             k = px[x, y]
         else:
             k = px[x - 1, y - 1]
+        # เปลื่ยนวิธีเช็กสีให้ถูก
         if px[x, y] != b and px[x, y] != c:
             idx += 1
             # [prev,sx,sy,ex,ey,next,status]
