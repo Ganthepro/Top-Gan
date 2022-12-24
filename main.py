@@ -1101,7 +1101,6 @@ def Upscale_line():
     stl_width.place_forget()
     stl_width_lable.place_forget()
     stl_convert_button.configure(command=stl_convert1)
-
     img = Image.open(filename_history[0])
     img = img.convert('RGBA')
     print(scale_entry.get(), save_filename_entry.get())
@@ -1109,10 +1108,6 @@ def Upscale_line():
     px = img.load()
     cv_img = np.array(img)
     img_cv2 = cv2.cvtColor(cv_img, cv2.COLOR_RGB2BGR)
-    # window = Tk()
-    xshift = 0
-    yshift = -1
-    #scale = int(scale_entry.get())
     scale = math.ceil(float(scale_entry.get()))
     if str(scale_entry.get()) != '' and str(save_filename_entry.get()) != '':
         stop_button.place(x=400, y=20)
@@ -1251,8 +1246,7 @@ def Upscale_line():
                     semi_vec.append(i)
                     n_vec.append(
                         [n[0], n[sx], n[sy], n[ex] - math.ceil(scale / 2), n[ey] + math.ceil(scale / 2)])
-                    n_vec.append([i[0], i[sx] + math.ceil(scale / 2),
-                                 i[sy] + math.ceil(scale / 2), i[ex], i[ey]])
+                    n_vec.append([i[0], i[sx] + math.ceil(scale / 2),i[sy] + math.ceil(scale / 2), i[ex], i[ey]])
             if for_return[0] == True:
                 title_lable.configure(text='Import Picture')
                 stop_button.place_forget()
