@@ -1027,8 +1027,7 @@ def dxf_convert():
                         else:
                             idx += 1
                             # [prev,sx,sy,ex,ey,next,status]
-                            vec.append(
-                                [idx - 1, x + 1, y, x + 1, y + 1, idx + 1, 0])
+                            vec.append([idx - 1, x + 1, y, x + 1, y + 1, idx + 1, 0])
                 if px[x, y] != b and px[x, y] != e:
                     idx += 1
                     # [prev,sx,sy,ex,ey,next,status]

@@ -1,0 +1,1 @@
+"""COPYRIGHT © Tamtikorn 2022. All Right Res
