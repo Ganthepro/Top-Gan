@@ -130,7 +130,7 @@ class window:
                 res = up.anti_aliasing(fline)
             else:
                 res = up.no_anti_aliasing()
-            if res == True:
+            if res:
                 return True
             else:
                 return up
