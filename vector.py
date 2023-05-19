@@ -123,7 +123,6 @@ class vector:
                             continue
                         else:
                             id += 1
-                        # print(id)
                     elif px_im[x, y] != e:
                         dwg.add(dwg.line((start_p[0], start_p[1]), ((start_p[0] + id), start_p[1]),
                                          stroke=svg.rgb(px_im[start_p[0], start_p[1]][0], px_im[start_p[0], start_p[1]][1],

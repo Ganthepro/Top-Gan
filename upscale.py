@@ -27,7 +27,7 @@ class upscale:
 
     def loadingStatus(self, start: int, end: int, num: int, maxNum: int, text: str):
         try:
-            if self.interrupt == True:
+            if self.interrupt:
                 self.interrupt = False
                 raise Exception(True)
             load = "{:.2f}".format(start + ((num * end) / maxNum))
@@ -300,7 +300,7 @@ class upscale:
                     idx += 1
                     self.vec.append([idx - 1, (x + 1) * self.scale, y * self.scale, (x + 1) * self.scale,
                                      (y + 1) * self.scale, idx + 1, 0])
-            if self.interrupt == True:
+            if self.interrupt:
                 self.interrupt = False
                 return True
             load = "{:.2f}".format(0 + ((y * 100) / self.hy))
