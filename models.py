@@ -279,12 +279,9 @@ class models:
                     o_sy += 1
                     n_sx_d += 1
                     n_sy_d += 1
-                    # vec.remove(n)
-                    # print(n)
                     if len(semi_vec) == 0:
                         semi_vec.append(n)
                     elif n[self.sx] - semi_vec[len(semi_vec) - 1][self.sx] == 1 and n[self.sy] - semi_vec[len(semi_vec) - 1][self.sy] == 1 and n[self.ex] - semi_vec[len(semi_vec) - 1][self.ex] == 1 and n[self.ey] - semi_vec[len(semi_vec) - 1][self.ey] == 1:
-                        # print(n , semi_vec[len(semi_vec) - 1]);
                         semi_vec.append(n)
                     else:
                         for v in end_vec:
