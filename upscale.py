@@ -300,12 +300,6 @@ class upscale:
                     idx += 1
                     self.vec.append([idx - 1, (x + 1) * self.scale, y * self.scale, (x + 1) * self.scale,
                                      (y + 1) * self.scale, idx + 1, 0])
-            if self.interrupt:
-                self.interrupt = False
-                return True
-            load = "{:.2f}".format(0 + ((y * 100) / self.hy))
-            self.label.configure(text=f"Creating Vector ({load}%)")
-            self.window.update()
             self.loadingStatus(0, 100, y, self.hy, "Creating Vector")
 
     def convertREALPIC(self, im: Image, threshold: int):
