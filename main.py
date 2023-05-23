@@ -151,7 +151,6 @@ class window:
         except:pass
         self.title_lable.configure(text="Import Picture")
         self.stop_button.place_forget()
-        """ แก้ต่อ """
 
     def upscaleLine(self):
         try:
