@@ -1,6 +1,7 @@
 from stl import mesh
 import numpy as np
 import math
+import pygcode
 
 class models:
     def __init__(self, lable, window, interruptBtn):
@@ -30,7 +31,6 @@ class models:
         faces = []
         scale = 1
         self.n_wx, self.n_hy = size
-        loop = 0
         for k, i in enumerate(vec):
             if i[self.sy] == i[self.ey]:
                 p1 = [i[self.sx] * scale / 1 * stl_scale + 20, i[self.sy] *
@@ -75,7 +75,6 @@ class models:
                 faces.append(face5_2)
                 faces.append(face6_1)
                 faces.append(face6_2)
-                loop += 1
                 vec.pop(vec.index(i))
             self.loadingStatus(0, 25, k, len(vec), "Creating STL")
         for k, i in enumerate(vec):
@@ -165,7 +164,6 @@ class models:
                 faces.append(face5_2)
                 faces.append(face6_1)
                 faces.append(face6_2)
-                loop += 1
             self.loadingStatus(25, 75, k, len(vec), "Creating STL")
         p1 = [19, 20, 0]  # ---
         p2 = [(self.n_wx * stl_scale) + 20, 20, 0]  # +--
@@ -201,7 +199,6 @@ class models:
         faces.append(face5_2)
         faces.append(face6_1)
         faces.append(face6_2)
-        loop = 0
         multi_vertices_np = np.array(faces)
         surface = mesh.Mesh(
             np.zeros(multi_vertices_np.shape[0], dtype=mesh.Mesh.dtype))
@@ -467,3 +464,6 @@ class models:
             f.write('G1 Z11\n')
             f.write('G90\n')
             f.close()
+            
+    def twoColor_gcode(self, stl_file_name: str, gcode_file_name: str):
+        pass
