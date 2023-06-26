@@ -36,11 +36,8 @@ class window:
             master=self.window, text='Upload', command=self.importPic)
         self.importPic_button.pack()
         self.file_locate_lable = tk.Label(
-            master=self.window, text='*All file will be save in the program directory.*')
-        self.file_locate_lable.place(y=390, x=10)
-        self.dev_by_lable = tk.Label(
-            master=self.window, text='*COPYRIGHT © Tamtikorn 2022. All Right Reserved.*')
-        self.dev_by_lable.place(y=390, x=317)
+            master=self.window, text='*All file will be saved in the program directory.*')
+        self.file_locate_lable.place(y=390, x=180)
         self.scale_lable = tk.Label(master=self.window, text='Scale :')
         self.scale_lable.place(x=120, y=440)
         self.shape_line_cheak_box = tk.Checkbutton(
@@ -61,25 +58,28 @@ class window:
         self.threshold_entry = tk.Entry(master=self.window)
         self.stl_convert_button = tk.Button(
             master=self.window, text='To'+'\n' + '3D-Printer', command=self.to3D, width=8, height=7)
-        self.stl_convert_button.place(x=600 - 275 + 70, y=483)
+        self.stl_convert_button.place(x=600 - 275 + 40, y=483)
         self.sgv_convert_button = tk.Button(
             master=self.window, text='To SVG', command=self.toSVG, width=8, height=7)
-        self.sgv_convert_button.place(x=505 - 245 + 70, y=483)
+        self.sgv_convert_button.place(x=505 - 245 + 40, y=483)
         self.pdf_convert_button = tk.Button(
             master=self.window, text='To PDF', command=self.toPDF, width=8, height=7)
-        self.pdf_convert_button.place(x=410 - 215 + 70, y=483)
+        self.pdf_convert_button.place(x=410 - 215 + 40, y=483)
         self.dxf_convert_button = tk.Button(
             master=self.window, text='To DXF', command=self.toDXF, width=8, height=7)
-        self.dxf_convert_button.place(x=315 - 185 + 70, y=483)
+        self.dxf_convert_button.place(x=315 - 185 + 40, y=483)
         self.up_scale_line_convert_button = tk.Button(
             master=self.window, text='Upscale' + '\n' + '(Line Only)', command=self.upscaleLine, width=8, height=7)
-        self.up_scale_line_convert_button.place(x=220 - 155 + 70, y=483)
+        self.up_scale_line_convert_button.place(x=220 - 155 + 40, y=483)
         self.up_scale_color_convert_button = tk.Button(
             master=self.window, text='Upscale'+'\n'+'(Color)', command=self.upscaleColor, width=8, height=7)
-        self.up_scale_color_convert_button.place(x=125 - 125 + 70, y=483)
+        self.up_scale_color_convert_button.place(x=125 - 125 + 40, y=483)
         self.real_pic_stl_button = tk.Button(master=self.window, text='To'+'\n' + '3D-Printer' +
                                              '\n' + '(Non-'+'\n' + 'Digital art)', command=self.to3D_real, width=8, height=7)
-        self.real_pic_stl_button.place(x=600 - 210 + 70, y=483)
+        self.real_pic_stl_button.place(x=600 - 210 + 40, y=483)
+        self.two_color_gcode_button = tk.Button(
+            master=self.window, text='Two Color\nGCODE\n(.gcode\nonly)', command=self.two_color_GCODE, width=8, height=7)
+        self.two_color_gcode_button.place(x=695 - 240 + 40, y=483)
         self.window.mainloop()
 
     def importPic(self):
@@ -88,6 +88,7 @@ class window:
         try:
             img = Image.open(filename)
         except:
+            self.filename_history = filename
             return
         img = img.convert('RGBA')
         wx, hy = img.size
@@ -99,7 +100,6 @@ class window:
         elif self.filename_history != '' and self.filename_history != filename:
             self.filename_history = filename
             image = ImageTk.PhotoImage(img)
-            print('Selected:', filename)
         image_lable = tk.Label(master=self.window, image=image)
         image_lable.place(x=150, y=80)
 
@@ -134,7 +134,8 @@ class window:
                 return True
             else:
                 return up
-        except:pass
+        except:
+            pass
 
     def upscaleColor(self):
         try:
@@ -147,8 +148,9 @@ class window:
                     res = up.drawColor(False)
                 if res != True:
                     up.showPic()
-                    up.savePic(str(self.save_filename_entry.get())) 
-        except:pass
+                    up.savePic(str(self.save_filename_entry.get()))
+        except:
+            pass
         self.title_lable.configure(text="Import Picture")
         self.stop_button.place_forget()
 
@@ -160,8 +162,9 @@ class window:
                 res = up.drawLine()
                 if res != True:
                     up.showPic()
-                    up.savePic(str(self.save_filename_entry.get())) 
-        except:pass
+                    up.savePic(str(self.save_filename_entry.get()))
+        except:
+            pass
         self.title_lable.configure(text="Import Picture")
         self.stop_button.place_forget()
 
@@ -169,9 +172,11 @@ class window:
         try:
             self.clearWindow()
             if self.drawing_lines_cheak_box_var.get() == 0:
-                up = self.upscaleSetup(False, False, int(self.scale_entry.get()))
+                up = self.upscaleSetup(
+                    False, False, int(self.scale_entry.get()))
             else:
-                up = self.upscaleSetup(False, True, int(self.scale_entry.get()))
+                up = self.upscaleSetup(
+                    False, True, int(self.scale_entry.get()))
             if up != True:
                 vec = vector(self.title_lable, self.window, self.stop_button)
                 res = up.drawColor(False)
@@ -182,7 +187,8 @@ class window:
                     else:
                         vec.convertPDF(res, str(
                             self.save_filename_entry.get()), False, up.getVec(), int(self.scale_entry.get()))
-        except:pass
+        except:
+            pass
         self.title_lable.configure(text="Import Picture")
         self.stop_button.place_forget()
 
@@ -200,7 +206,8 @@ class window:
                     else:
                         vec.convertSVG(res, up.getVec(), str(
                             self.save_filename_entry.get()), int(self.scale_entry.get()), False, up.AA)
-        except:pass
+        except:
+            pass
         self.title_lable.configure(text="Import Picture")
         self.stop_button.place_forget()
 
@@ -210,8 +217,10 @@ class window:
             up = self.upscaleSetup(False, True, int(self.scale_entry.get()))
             if up != True:
                 vec = vector(self.title_lable, self.window, self.stop_button)
-                vec.convertDXF(up.getVec(), str(self.save_filename_entry.get()))
-        except:pass
+                vec.convertDXF(up.getVec(), str(
+                    self.save_filename_entry.get()))
+        except:
+            pass
         self.title_lable.configure(text="Import Picture")
         self.stop_button.place_forget()
 
@@ -223,7 +232,8 @@ class window:
                 md = models(self.title_lable, self.window, self.stop_button)
                 md.convertSTL(float(self.stl_base_wall_height.get()), float(self.stl_wall_height.get()), float(
                     self.stl_width.get()), float(self.scale_entry.get()), str(self.save_filename_entry.get()), up.getVec(), up.getSize())
-        except:pass
+        except:
+            pass
         self.title_lable.configure(text="Import Picture")
         self.stop_button.place_forget()
 
@@ -235,7 +245,8 @@ class window:
                 md = models(self.title_lable, self.window, self.stop_button)
                 md.convertGCODE(float(self.stl_base_wall_height.get()), float(self.stl_wall_height.get()), float(
                     self.stl_width.get()), float(self.scale_entry.get()), str(self.save_filename_entry.get()), up.getVec(), up.getSize())
-        except:pass
+        except:
+            pass
         self.title_lable.configure(text="Import Picture")
         self.stop_button.place_forget()
 
@@ -254,9 +265,9 @@ class window:
         self.stl_base_wall_height_lable.place(x=370, y=415)
         self.stl_base_wall_height.place(x=450, y=415)
         self.stl_apply.place(x=505, y=435)
-        self.stl_apply.configure(command=lambda:self.toSTL(False))
+        self.stl_apply.configure(command=lambda: self.toSTL(False))
         self.gcode_apply.place(x=543, y=435)
-        self.gcode_apply.configure(command=lambda:self.toGCODE(False))
+        self.gcode_apply.configure(command=lambda: self.toGCODE(False))
 
     def to3D_real(self):
         self.clearWindow()
@@ -270,14 +281,24 @@ class window:
         self.stl_base_wall_height_lable.place(x=370, y=415)
         self.stl_base_wall_height.place(x=450, y=415)
         self.stl_apply.place(x=505, y=435)
-        self.stl_apply.configure(command=lambda:self.toSTL(True))
+        self.stl_apply.configure(command=lambda: self.toSTL(True))
         self.gcode_apply.place(x=543, y=435)
-        self.gcode_apply.configure(command=lambda:self.toGCODE(True))
+        self.gcode_apply.configure(command=lambda: self.toGCODE(True))
         self.threshold_lable.place(x=280, y=440)
         self.threshold_entry.place(x=375, y=440)
         self.save_filename_lable.configure(text='Filename :')
         self.save_filename_lable.place(x=170-40)
         self.save_filename_entry.place(x=230-40)
+
+    def two_color_GCODE(self):
+        try:
+            self.clearWindow()
+            md = models(self.title_lable, self.window, self.stop_button)
+            md.twoColor_gcode(self.filename_history, str(self.save_filename_entry.get()))
+        except:
+            pass
+        self.title_lable.configure(text="Import Picture")
+        self.stop_button.place_forget()
 
     def interrupt(self):
         self.interruptStatus = True
