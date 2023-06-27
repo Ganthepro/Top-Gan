@@ -80,6 +80,7 @@ class window:
         self.two_color_gcode_button = tk.Button(
             master=self.window, text='Two Color\nGCODE\n(.gcode\nonly)', command=self.two_color_GCODE, width=8, height=7)
         self.two_color_gcode_button.place(x=695 - 240 + 40, y=483)
+        self.image_lable = tk.Label(master=self.window)
         self.window.mainloop()
 
     def importPic(self):
@@ -89,10 +90,11 @@ class window:
             img = Image.open(filename)
         except:
             self.filename_history = filename
+            if filename != "":
+                self.image_lable.configure(text="GCODE File", font=('Bold', 12),image="")
+                self.image_lable.place(x=250, y=210)
             return
         img = img.convert('RGBA')
-        wx, hy = img.size
-        print(wx*hy)
         img = img.resize((300, 300))
         if self.filename_history == '':
             self.filename_history = filename
@@ -100,8 +102,8 @@ class window:
         elif self.filename_history != '' and self.filename_history != filename:
             self.filename_history = filename
             image = ImageTk.PhotoImage(img)
-        image_lable = tk.Label(master=self.window, image=image)
-        image_lable.place(x=150, y=80)
+        self.image_lable.configure(image=image)
+        self.image_lable.place(x=150, y=80)
 
     def clearWindow(self):
         self.threshold_entry.place_forget()
