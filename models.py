@@ -1,7 +1,6 @@
 from stl import mesh
 import numpy as np
 import math
-import pygcode
 
 class models:
     def __init__(self, lable, window, interruptBtn):
