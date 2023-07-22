@@ -523,4 +523,3 @@ class models:
             for i,line in enumerate(texts):
                 file.write(line)
                 self.loadingStatus(0, 100, i, len(texts), "Converting")
-
