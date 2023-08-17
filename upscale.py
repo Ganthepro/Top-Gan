@@ -273,9 +273,7 @@ class upscale:
                                      i[self.sy] + math.ceil(self.scale / 2), i[self.ex], i[self.ey]])
                 self.loadingStatus(0, 100, k, len(self.vec), "Fixing Line")
             for i in self.vec:
-                if i in semi_vec:
-                    pass
-                else:
+                if i not in semi_vec:
                     n_vec.append(i)
             self.vec = n_vec
 
