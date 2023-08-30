@@ -6,7 +6,7 @@ from PIL import Image
 class vector:
     def __init__(self, lable, window, interruptBtn):
         self.pdf = FPDF()
-        if lable != None and window != None and interruptBtn != None: 
+        if lable != None and window != None and interruptBtn != None:
             self.label = lable
             self.window = window
             self.interruptBtn = interruptBtn
