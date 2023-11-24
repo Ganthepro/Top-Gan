@@ -4,7 +4,6 @@ from PIL import Image, ImageDraw
 import math
 from vector import vector
 import ezdxf
-import cairo
 
 class upscale:
     def __init__(self, scale: int, im: str, realpic: bool, lable, window, interruptBtn):
@@ -426,7 +425,6 @@ class upscale:
 up = upscale(5,r"G:\My Drive\Top_Gan Project\ตัวอย่างรูปภาพเพื่อใช้กับโปรแกรม\3.tif",False,None,None,None)
 up.anti_aliasing(True)
 up.groupVec(up.getVec())   
-# o;;o             
             
                  
 
