@@ -4,6 +4,7 @@ from PIL import Image, ImageDraw
 import math
 from vector import vector
 import ezdxf
+import cairo
 
 class upscale:
     def __init__(self, scale: int, im: str, realpic: bool, lable, window, interruptBtn):
