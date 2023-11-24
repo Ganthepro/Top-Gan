@@ -11,3 +11,4 @@ adaptive = cv2.adaptiveThreshold(sketch_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C
 cv2.imshow("Test", adaptive)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+# sdf

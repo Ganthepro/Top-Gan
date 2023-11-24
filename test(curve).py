@@ -425,7 +425,8 @@ class upscale:
                         ctx.stroke()
 up = upscale(5,r"G:\My Drive\Top_Gan Project\ตัวอย่างรูปภาพเพื่อใช้กับโปรแกรม\3.tif",False,None,None,None)
 up.anti_aliasing(True)
-up.groupVec(up.getVec())                 
+up.groupVec(up.getVec())   
+# o;;o             
             
                  
 
